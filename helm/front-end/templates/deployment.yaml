@@ -1,0 +1,51 @@
+
+#apiVersion: apps/v1   
+#kind: Deployment
+#metadata:
+#  name: {{ .Release.Name }}-frontend
+#spec:
+#  replicas: {{ .Values.replicaCount }}
+#  selector:
+#    matchLabels:
+#      app: payments-api
+#  template:
+#    metadata:
+#      labels:
+#        app: payments-api
+#    spec:
+#      containers:
+#        - name: frontend
+#          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+#          ports:
+#            - containerPort: 3000 
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "front-end.fullname" . }}
+  labels:
+    app: {{ include "front-end.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "front-end.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "front-end.name" . }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: {{ .Values.service.port }}
+          volumeMounts:
+            - mountPath: /app
+              name: app-volume
+      volumes:
+        - name: app-volume
+          hostPath:
+            path: /api
+            
+

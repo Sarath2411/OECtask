@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  front-end:
+    build: ./front-end
+    container_name: Frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./api:/app
+  payments-api:
+    build: ./payments-api
+    container_name: backend
+    ports:
+      - '5039:5039'
+    stdin_open: true

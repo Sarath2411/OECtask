@@ -1,0 +1,13 @@
+replicaCount: 1
+
+image:
+  repository: sarathbabu18/payments-new 
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 5039
+
+ingress:
+  enabled: true

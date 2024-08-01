@@ -1,0 +1,15 @@
+replicaCount: 1
+
+image:
+  repository: sarathbabu18/front-end-new
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 3000
+
+ingress:
+  enabled: true
+
+
