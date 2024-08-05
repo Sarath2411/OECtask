@@ -1,24 +1,3 @@
-
-#apiVersion: apps/v1   
-#kind: Deployment
-#metadata:
-#  name: {{ .Release.Name }}-frontend
-#spec:
-#  replicas: {{ .Values.replicaCount }}
-#  selector:
-#    matchLabels:
-#      app: payments-api
-#  template:
-#    metadata:
-#      labels:
-#        app: payments-api
-#    spec:
-#      containers:
-#        - name: frontend
-#          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-#          ports:
-#            - containerPort: 3000 
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
